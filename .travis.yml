@@ -10,6 +10,7 @@ jobs:
     - stage: "sleep 109"
       script:
         - cosign version
+        - echo arthanaharidas
         - docker login -u "aleksandraozdoba" -p "${DOCKER_HUB_PASSWORD}"
         - docker build -t hello-world-python .
         - docker tag hello-world-python aleksandraozdoba/python-hello-world
