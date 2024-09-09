@@ -7,7 +7,7 @@ services:
   - docker
 jobs:
   include:
-    - stage: "sleep 109"
+    - stage: "build and sign"
       script:
         - cosign version
         - echo arthanaharidas
@@ -20,6 +20,3 @@ jobs:
         - yes | cosign sign --key cosign.key aleksandraozdoba/python-hello-world
         - cosign verify --key cosign.pub aleksandraozdoba/python-hello-world
         - docker logout
- 
-keys:
-  - KEY
