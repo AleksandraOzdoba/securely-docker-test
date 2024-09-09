@@ -15,7 +15,7 @@ jobs:
         - docker tag hello-world-python aleksandraozdoba/python-hello-world
         - docker push aleksandraozdoba/python-hello-world
         - openssl aes-256-cbc -pbkdf2 -d -in cosign.key.enc -out cosign.key -k "${COSIGN_KEY_PASSWORD}"
-        - export COSIGN_PASSWORD="${COS_PASSWORD}"
+        #- export COSIGN_PASSWORD="${COS_PASSWORD}"
         - yes | cosign sign --key cosign.key aleksandraozdoba/python-hello-world
         - cosign verify --key cosign.pub aleksandraozdoba/python-hello-world
         - docker logout
