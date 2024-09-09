@@ -12,11 +12,11 @@ jobs:
         - cosign version
         - docker login -u "aleksandraozdoba" -p "${DOCKER_HUB_PASSWORD}"
         - docker build -t hello-world-python .
-        - docker tag hello-world-python travisarchitectenterprise/python-hello-world
-        - docker push travisarchitectenterprise/python-hello-world
+        - docker tag hello-world-python aleksandraozdoba/python-hello-world
+        - docker push aleksandraozdoba/python-hello-world
         - export COSIGN_PASSWORD="${COS_PASSWORD}"
-        - yes | cosign sign --key cosign.key travisarchitectenterprise/python-hello-world
-        - cosign verify --key cosign.pub travisarchitectenterprise/python-hello-world
+        - yes | cosign sign --key cosign.key aleksandraozdoba/python-hello-world
+        - cosign verify --key cosign.pub aleksandraozdoba/python-hello-world
         - docker logout
  
 keys:
