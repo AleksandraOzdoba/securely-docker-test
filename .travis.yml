@@ -5,8 +5,6 @@ env:
   - COSIGN_EXPERIMENTAL=1
 services:
   - docker
-# before_install:
-#   - sudo apt-get install -y cosign
 jobs:
   include:
     - stage: "sleep 109"
@@ -18,9 +16,8 @@ jobs:
         - docker push travisarchitectenterprise/python-hello-world
         - export COSIGN_PASSWORD="${COS_PASSWORD}"
         - yes | cosign sign --key cosign.key travisarchitectenterprise/python-hello-world
-       # - yes | cosign sign --key cosign.key arthanaharidas/python-hello-world
         - cosign verify --key cosign.pub travisarchitectenterprise/python-hello-world
         - docker logout
  
 keys:
-  - priv_key
+  - key
