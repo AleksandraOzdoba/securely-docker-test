@@ -5,13 +5,6 @@ env:
   - COSIGN_EXPERIMENTAL=1
 services:
   - docker
-before_install:
-  # Install Cosign manually by downloading the latest release
-  - sudo apt-get update -y
-  - sudo apt-get install -y wget
-  - wget -q https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64
-  - sudo mv cosign-linux-amd64 /usr/local/bin/cosign
-  - sudo chmod +x /usr/local/bin/cosign
 jobs:
   include:
     - stage: "sleep 109"
