@@ -17,7 +17,7 @@ jobs:
         - docker push aleksandraozdoba/python-hello-world
         - export COSIGN_PASSWORD="${COS_PASSWORD}"
         - yes | cosign sign --key cosign.key aleksandraozdoba/python-hello-world
-        - yes | cosign verify --key cosign.pub aleksandraozdoba/python-hello-world
+        - cosign verify --key cosign.pub aleksandraozdoba/python-hello-world
         - docker logout
 keys:
   - SSH_KEY_FOR_SIGNING
