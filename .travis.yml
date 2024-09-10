@@ -1,23 +1,24 @@
 os: linux
 dist: bionic
 language: python
-env: 
+env:
   - COSIGN_EXPERIMENTAL=1
 services:
   - docker
 jobs:
   include:
-    - stage: "build and sign"
+    - stage: "sleep 109"
       script:
         - cosign version
+        - echo arthanaharidas
         - docker login -u "aleksandraozdoba" -p "${DOCKER_HUB_PASSWORD}"
         - docker build -t hello-world-python .
         - docker tag hello-world-python aleksandraozdoba/python-hello-world
         - docker push aleksandraozdoba/python-hello-world
         - openssl aes-256-cbc -pbkdf2 -d -in cosign.key.enc -out cosign.key -k "${COSIGN_KEY_PASSWORD}"
         - export COSIGN_PASSWORD="${COS_PASSWORD}"
-        - cosign sign --key cosign.key aleksandraozdoba/python-hello-world
-        - cosign verify --key cosign.pub aleksandraozdoba/python-hello-world
+        - yes | cosign sign --key cosign.key aleksandraozdoba/python-hello-world
+        - yes | cosign verify --key cosign.pub aleksandraozdoba/python-hello-world
         - docker logout
 keys:
   - SSH_KEY_FOR_SIGNING
