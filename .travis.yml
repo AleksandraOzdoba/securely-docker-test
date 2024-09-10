@@ -20,6 +20,7 @@ before_script:
 
 script:
   - docker pull $IMAGE_NAME # Pull the image to ensure it exists
+  - openssl aes-256-cbc -pbkdf2 -d -in cosign.key.enc -out cosign.key -k "${COSIGN_KEY_PASSWORD}"
   - cosign sign --key cosign.key $IMAGE_NAME # Sign the actual image
 
 after_script:
